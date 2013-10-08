@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:id="@+id/scrollView1" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ExpandableListView
+                android:id="@+id/fragLv"
+                android:layout_width="match_parent"
+                android:layout_height="458dp" 
+        		android:dividerHeight="1dp"
+        		android:listSelector="@drawable/list_selector_flatcolor">
+            </ExpandableListView>
+            
+        </LinearLayout>
+    </ScrollView>
+
+
