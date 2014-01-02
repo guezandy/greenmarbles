@@ -1,8 +1,6 @@
 package com.zipper.zipcloset;
 
 import com.kinvey.android.Client;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;

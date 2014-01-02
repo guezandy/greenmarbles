@@ -83,9 +83,9 @@ public class MenuFragmentHome extends Fragment {
                 if (!(result == null)){
                 	ArrayList<Entity> resultlist = new ArrayList<Entity>(Arrays.asList(result));
                 //	entitiesSwitch( methodIndex,resultlist, lv1);
-  
+System.out.println(resultlist.toString());
             		CustomListAdapter clist=  new CustomListAdapter(context, resultlist);
-            		//  System.out.pricntln(lv.toString());
+System.out.println(lv.toString());
             		lv.setAdapter(clist);
             		lv.setOnItemClickListener(new OnItemClickListener() {	
             			@Override

@@ -72,7 +72,18 @@ public class ZipActivity extends KinveyActivity {
 				mProgressBar.setVisibility(isWriteReady ? View.VISIBLE : View.GONE);
 			}
 		});
-
+		
+		
+		Button purchaseButton = (Button) findViewById(R.id.purchaseButton);
+		
+		purchaseButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				makevenmopayment("1");
+			}
+		});
+		
+		
 		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 		if (mNfcAdapter == null) {
 			Toast.makeText(this, "Sorry, NFC is not available on this device", Toast.LENGTH_SHORT).show();
@@ -80,7 +91,26 @@ public class ZipActivity extends KinveyActivity {
 		}
 		
 	}
-
+	public String app_id = "1528";
+	public String app_name= "SnagTag";
+	public String recipient= "7863570943";
+	//public String amount;
+	public String txn = "pay";
+	public String note = "Bought something with SnagTag!";
+    public void makevenmopayment(String amount){
+        try {
+            Intent venmoIntent = VenmoLibrary.openVenmoPayment(app_id, app_name, recipient, amount, note, txn);
+            startActivityForResult(venmoIntent, 1); //1 is the requestCode we are using for Venmo. Feel free to change this to another number. 
+        }
+        catch (android.content.ActivityNotFoundException e) //Venmo native app not install on device, so let's instead open a mobile web version of Venmo in a WebView
+        {
+            Intent venmoIntent = new Intent(ZipActivity.this, VenmoWebViewActivity.class);
+            String venmo_uri = VenmoLibrary.openVenmoPaymentInWebView(app_id, app_name, recipient, amount, note, txn);
+            venmoIntent.putExtra("url", venmo_uri);
+            startActivityForResult(venmoIntent, 1);
+        }
+    }
+	
 	private boolean isWriteReady = false;
 
 	/**

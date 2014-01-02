@@ -3,6 +3,7 @@ package com.zipper.zipcloset;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.actionbarsherlock.view.Menu;
 import com.kinvey.android.AsyncAppData;
 import com.kinvey.android.Client;
 import com.kinvey.android.callback.KinveyListCallback;
@@ -26,7 +27,7 @@ import android.widget.Toast;
 
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class MenuFragmentWishList extends Fragment {
+public class MenuFragmentWishList extends BaseSherlockeFragmentActivity {
 	protected Client kinveyClient;
 	public ListView lv1;
 	private static final String KINVEY_KEY = "kid_PVAtuuzi2f";
@@ -39,13 +40,13 @@ public class MenuFragmentWishList extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getActivity().findViewById(R.id.menulist).setVisibility(View.VISIBLE);
-		getActivity().findViewById(R.id.textView1).setVisibility(View.VISIBLE);
-		getActivity().findViewById(R.id.zipButtonAct).setVisibility(View.INVISIBLE);
+		findViewById(R.id.menulist).setVisibility(View.VISIBLE);
+		findViewById(R.id.textView1).setVisibility(View.VISIBLE);
+		findViewById(R.id.zipButtonAct).setVisibility(View.INVISIBLE);
 		//getActivity().findViewById(R.id.img1).setVisibility(View.INVISIBLE);
 		kinveyClient = new Client.Builder(KINVEY_KEY, KINVEY_SECRET_KEY,
-				getActivity().getApplicationContext()).build();
-		TextView intro = (TextView) getActivity().findViewById(R.id.textView1);
+				getApplicationContext()).build();
+		TextView intro = (TextView) findViewById(R.id.textView1);
 		//ImageView main = (ImageView) getActivity().findViewById(R.id.img1);
 		//main.setVisibility(View.VISIBLE);
 		intro.setText("Your personal wish list");
@@ -53,22 +54,22 @@ public class MenuFragmentWishList extends Fragment {
 		
 	}
 	
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.frag_wish, container, false);
-        ListView lv1 = ((ListView) getActivity().findViewById(R.id.menulist));
-        lv1.setAdapter(null);
-        
-        getCollection(KINVEY_ENTITY_COLLECTION_KEY, KINVEY_TAGS_HISTORY_CASE, lv1 ,kinveyClient);
-        
-        return view;
-    }
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        View view = inflater.inflate(R.layout.frag_wish, container, false);
+//        ListView lv1 = ((ListView) getActivity().findViewById(R.id.menulist));
+//        lv1.setAdapter(null);
+//        
+//        getCollection(KINVEY_ENTITY_COLLECTION_KEY, KINVEY_TAGS_HISTORY_CASE, lv1 ,kinveyClient);
+//        
+//        return view;
+//    }
     
     public void getCollection(String collection, final int methodIndex, final ListView lv, Client kinveyClient) {
     	final String TAG = "Query";
     	
-    	final Context context = getActivity().getApplicationContext();
+    	final Context context = getApplicationContext();
     	
     	Query myQuery = kinveyClient.query();
     	//myQuery.equals("Name","Launch Party");
@@ -89,8 +90,8 @@ public class MenuFragmentWishList extends Fragment {
             			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
             				Object o = lv.getItemAtPosition(position);
             				Entity closetData = (Entity) o;
-            				
-            				Intent zip = new Intent(getActivity(), ZipActivity.class);
+            		
+            				Intent zip = new Intent(MenuFragmentWishList.this, ZipActivity.class);
             				zip.putExtra("nfcId", closetData.getId());
             				startActivity(zip);
             		

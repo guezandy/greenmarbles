@@ -1,9 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+    <item 
+        android:id="@+id/gotohome" 
+        android:title="Home"
+        android:showAsAction="always"></item>
+    
+    <item android:id="@+id/gotowishlist"
+         android:title="WishList"
+        android:showAsAction="always"></item>
+        
+        <item android:id="@+id/gotopurchased"
+         android:title="Purchased"
+        android:showAsAction="always"></item>
+    
+    <item android:id="@+id/gotologin"
+        android:title="Logout"
+        android:showAsAction="always"></item>
+
 
 </menu>

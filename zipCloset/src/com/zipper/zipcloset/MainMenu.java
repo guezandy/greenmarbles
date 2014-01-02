@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,12 +18,10 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import com.actionbarsherlock.view.Menu;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class MainMenu extends FragmentActivity {
+public class MainMenu extends BaseSherlockeFragmentActivity {
 	protected Client kinveyClient;
 	public static final String appKey = "kid_PVAtuuzi2f";
 	public static final String appSecret = "2cab4a07424945e981478fcfc02341af";
@@ -34,28 +31,28 @@ public class MainMenu extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 		appContext = getApplicationContext();
-		ActionBar actionbar = getActionBar();
-		
-		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		ActionBar.Tab HomeTab = actionbar.newTab().setText("Home");
-		ActionBar.Tab TagHistoryTab = actionbar.newTab().setText("Tags");
-		ActionBar.Tab WishListTab = actionbar.newTab().setText("Wish");
-		ActionBar.Tab ClosetTab = actionbar.newTab().setText("Purchase");
-		
-		Fragment HomeFragment = new MenuFragmentHome();
-		Fragment TagHistoryFragment = new MenuFragmentTagHistory();
-		Fragment WishListFragment = new MenuFragmentWishList();
-		Fragment ClosetFragment = new MenuFragmentCloset();
-		
-		HomeTab.setTabListener(new MyTabsListener(HomeFragment));
-		TagHistoryTab.setTabListener(new MyTabsListener(TagHistoryFragment));
-		WishListTab.setTabListener(new MyTabsListener(WishListFragment));
-		ClosetTab.setTabListener(new MyTabsListener(ClosetFragment));
-		
-		actionbar.addTab(HomeTab);
-		actionbar.addTab(TagHistoryTab);
-		actionbar.addTab(WishListTab);
-		actionbar.addTab(ClosetTab);
+//		ActionBar actionbar = getActionBar();
+//		
+//		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+//		ActionBar.Tab HomeTab = actionbar.newTab().setText("Home");
+//		ActionBar.Tab TagHistoryTab = actionbar.newTab().setText("Tags");
+//		ActionBar.Tab WishListTab = actionbar.newTab().setText("Wish");
+//		ActionBar.Tab ClosetTab = actionbar.newTab().setText("Purchase");
+//		
+//		Fragment HomeFragment = new MenuFragmentHome();
+//		Fragment TagHistoryFragment = new MenuFragmentTagHistory();
+//		Fragment WishListFragment = new MenuFragmentWishList();
+//		Fragment ClosetFragment = new MenuFragmentCloset();
+//		
+//		HomeTab.setTabListener(new MyTabsListener(HomeFragment));
+//		TagHistoryTab.setTabListener(new MyTabsListener(TagHistoryFragment));
+//		WishListTab.setTabListener(new MyTabsListener(WishListFragment));
+//		ClosetTab.setTabListener(new MyTabsListener(ClosetFragment));
+//		
+//		actionbar.addTab(HomeTab);
+//		actionbar.addTab(TagHistoryTab);
+//		actionbar.addTab(WishListTab);
+//		actionbar.addTab(ClosetTab);
 		
 		kinveyClient = new Client.Builder(appKey, appSecret
 			    , this.getApplicationContext()).build();
@@ -102,41 +99,14 @@ SUPEEEERRR IMPORTANT LOGOUT BUTTON ON ACTION BAR!!!
 		*/
 	}
 	
-	
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main_menu, menu);
-		return true;
+	@Override 
+	public boolean onCreateOptionsMenu(Menu menu){
+		com.actionbarsherlock.view.MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.main,  (com.actionbarsherlock.view.Menu) menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
-	   
-		@Override
-		public boolean onOptionsItemSelected(MenuItem item) {
-			switch(item.getItemId()) {
-				case R.id.menuitem_search:
-					Toast.makeText(appContext, "search", Toast.LENGTH_SHORT).show();
-					return true;
-				case R.id.menuitem_add:
-					Toast.makeText(appContext, "add", Toast.LENGTH_SHORT).show();
-					return true;
-				case R.id.menuitem_share:
-					Toast.makeText(appContext, "share", Toast.LENGTH_SHORT).show();
-					return true;
-				case R.id.menuitem_feedback:
-					Toast.makeText(appContext, "feedback", Toast.LENGTH_SHORT).show();
-					return true;
-				case R.id.menuitem_about:
-					Toast.makeText(appContext, "about", Toast.LENGTH_SHORT).show();
-					return true;
-				case R.id.menuitem_quit:
-					Toast.makeText(appContext, "quit", Toast.LENGTH_SHORT).show();
-					return true;
-			}
-			return false;
-		}
-
+		
 	    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 		@Override
 	    protected void onSaveInstanceState(Bundle outState) {

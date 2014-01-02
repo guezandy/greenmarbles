@@ -19,7 +19,6 @@
         android:contentDescription="@string/facebook_login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
-        android:onClick="submitFacebook"
         android:src="@drawable/sign_in_facebook" />
 
     <Button
@@ -29,7 +28,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="34dp"
-        android:onClick="skipToMenu"
         android:text="@string/skip" />
 
     <Button
@@ -39,7 +37,6 @@
         android:layout_above="@+id/skipButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="46dp"
-        android:onClick="login"
         android:text="@string/ziplogin" />
 
     <Button
@@ -48,7 +45,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/skipButton"
         android:layout_centerHorizontal="true"
-        android:onClick="registerAccount"
         android:text="@string/reg" />
 
     <EditText

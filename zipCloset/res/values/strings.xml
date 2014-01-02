@@ -93,5 +93,10 @@
     <string name="snapppp">Snag It!</string>
     <string name="SnagTag">Go To Snag Tag</string>
     <string name="home">Home</string>
+    <string name="title_activity_venmo">VenmoActivity</string>
+    <string name="Venmo">Venmo Payment</string>
+    <string name="title_activity_wishlist">WishList</string>
+    <string name="title_activity_tag_history">History</string>
+    <string name="title_activity_purchased">Purchased</string>
 
 </resources>

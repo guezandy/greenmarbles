@@ -55,8 +55,8 @@ public class KinveyActivity extends FragmentActivity {
             public void onSuccess(Entity entity) {
                 if (!(entity == null)){
                 	entitySwitch(methodCase,entity, kinveyClient);
-                    Toast.makeText(context,"Entity Retrieved\nTitle: " + entity.getId()
-                    + "\nDescription: " + entity.get("Description"), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(context,"Entity Retrieved\nTitle: " + entity.getId()
+                    //+ "\nDescription: " + entity.get("Description"), Toast.LENGTH_LONG).show();
                 }
                 
             }
@@ -87,7 +87,6 @@ public class KinveyActivity extends FragmentActivity {
                 	}
                 }
             }
-	
 	            @Override
 	            public void onFailure(Throwable error) {
 	                Log.e(TAG, "AppData.get by Query Failure", error);
@@ -205,22 +204,22 @@ public class KinveyActivity extends FragmentActivity {
 		ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.pbWriteToTag);
 		mProgressBar.setVisibility(View.GONE);
 		
-		Button mPurchaseButton = (Button) findViewById(R.id.purchaseButton);
+		//Button mPurchaseButton = (Button) findViewById(R.id.purchaseButton);
 		Button mFavoriteButton = (Button) findViewById(R.id.favoriteButton);
 	
 		System.out.println("Inside if statement" +entity.getId());  
-		idText.setText("Clothing Type: " + entity.get("type"));
+		idText.setText("Clothing Type: " + entity.get("Type"));
 		price.setText("Price: "+entity.get("Price"));
 		brand.setText("Brand: "+entity.get("Brand"));
-		mPurchaseButton.setOnClickListener(new OnClickListener() {
-				
-			@Override
-			public void onClick(View v) {
-				saveEntity(entity, "Closet", kinveyClient);
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(entity.get("PurchaseUrl").toString()));
-				startActivity(browserIntent);
-			}
-		});
+//		mPurchaseButton.setOnClickListener(new OnClickListener() {
+//				
+//			@Override
+//			public void onClick(View v) {
+//				saveEntity(entity, "Closet", kinveyClient);
+//				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(entity.get("PurchaseUrl").toString()));
+//				startActivity(browserIntent);
+//			}
+//		});
 		mFavoriteButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

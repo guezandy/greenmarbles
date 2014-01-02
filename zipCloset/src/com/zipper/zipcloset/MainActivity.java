@@ -21,11 +21,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View;
+
+
 import com.facebook.Session;
 import com.facebook.SessionState;
 
 
-public class MainActivity extends AccountAuthenticatorActivity {
+public class MainActivity extends BaseSherlockeFragmentActivity  {
 
 	public static final String TAG = MainActivity.class.getSimpleName();
 	
@@ -61,6 +63,8 @@ public class MainActivity extends AccountAuthenticatorActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		kinveyClient = new Client.Builder(appKey, appSecret
+			    , this.getApplicationContext()).build();
 		
 		mAccountManager = AccountManager.get(this);
 		final Intent intent = getIntent();
@@ -68,17 +72,44 @@ public class MainActivity extends AccountAuthenticatorActivity {
 
 		mRequestNewAccount = (mUserEmail == null);
 		mConfirmCredentials = intent.getBooleanExtra(PARAM_CONFIRM_CREDENTIALS,false);
-		kinveyClient = new Client.Builder(appKey, appSecret
-			    , this.getApplicationContext()).build();
 
 		setContentView(R.layout.activity_main);
 
 		//mErrorMessage = (TextView) findViewById(R.id.tvErrorMessage);
 		mEditUserEmail = (EditText) findViewById(R.id.usernamee);
 		mEditPassword = (EditText) findViewById(R.id.passwordd);
-    	mButtonLogin = (Button) findViewById(R.id.loginButton);
+    	//mButtonLogin = (Button) findViewById(R.id.loginButton);
+    	
+    	final Button bregister = (Button) findViewById(R.id.register);
+        bregister.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                registerAccount();
+            }
+        });
+    	
+        final Button blogin = (Button) findViewById(R.id.loginButton);
+        blogin.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                login();
+            }
+        });
+        final Button bskip = (Button) findViewById(R.id.skipButton);
+        bskip.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                skipToMenu();
+            }
+        });
+        
+//        final Button bfblogin = (Button) findViewById(R.id.btnLoginFacebook);
+//        bfblogin.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                submitFacebook();
+//            }
+//        });
+
 
 	}
+	
 	@Override
 	protected Dialog onCreateDialog(int id, Bundle args) {
 		final ProgressDialog dialog = new ProgressDialog(this);
@@ -92,7 +123,8 @@ public class MainActivity extends AccountAuthenticatorActivity {
 	/**
 	 * Method to handle Login button clicks - gets Username and Password and calls User Login method.  
 	 */
-	public void login(View view) {
+	public void login() {
+		System.out.println("Made it inside!");
 		if(validateFields()) {
 			if (mRequestNewAccount) {
 				mUserEmail = mEditUserEmail.getText().toString();
@@ -102,6 +134,7 @@ public class MainActivity extends AccountAuthenticatorActivity {
 				mErrorMessage.setText("Please enter a valid username and password.");
 			} else {
 				//showProgress();
+				System.out.println("about to fit userLogin");
 				userLogin();
 			}
 		}
@@ -123,15 +156,15 @@ public class MainActivity extends AccountAuthenticatorActivity {
         MainActivity.this.finish();
 	}
 	*/
-	public void launchFacebookLogin(View view) {
-        Intent intent = new Intent(MainActivity.this, FacebookLoginActivity.class);
-        startActivity(intent);
-        System.out.println("WE out of the main;");
-        //MainActivity.this.finish();
-	}
+	//public void launchFacebookLogin(View view) {
+    //    Intent intent = new Intent(MainActivity.this, FacebookLoginActivity.class);
+    //   startActivity(intent);
+    //   System.out.println("WE out of the main;");
+    //    //MainActivity.this.finish();
+	//}
 	
 	
-	public void skipToMenu(View view) {
+	public void skipToMenu() {
 		MainActivity.this.startActivity(new Intent(MainActivity.this, MainMenu.class));
         MainActivity.this.finish();
 	}
@@ -141,7 +174,7 @@ public class MainActivity extends AccountAuthenticatorActivity {
         LoginActivity.this.finish();
 	}
 	*/
-	public void registerAccount(View v) {
+	public void registerAccount() {
 		Intent intent = new Intent(this, RegisterNewAccountActivity.class);
         startActivity(intent);
 	}
@@ -177,7 +210,7 @@ public class MainActivity extends AccountAuthenticatorActivity {
 		final Intent intent = new Intent();
 		intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, mUserEmail);
 		intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, ACCOUNT_TYPE);
-		setAccountAuthenticatorResult(intent.getExtras());
+//		setAccountAuthenticatorResult(intent.getExtras());
 		setResult(RESULT_OK,intent);
 		finish();
 	}
@@ -223,6 +256,7 @@ public class MainActivity extends AccountAuthenticatorActivity {
 	 //  Method to log the twitter Kinvey user, passing a KinveyCallback.  
 	 
 	public void userLogin() {
+		System.out.println("Before Client is called!");
 		kinveyClient.user().login(mEditUserEmail.getText().toString().toLowerCase() , mEditPassword.getText().toString(), new KinveyUserCallback() {
             public void onFailure(Throwable t) {
                 CharSequence text = "Wrong username or password";
@@ -236,66 +270,67 @@ public class MainActivity extends AccountAuthenticatorActivity {
                 CharSequence text = "Welcome "+ u.get("firstname");
                 Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
                 //onAuthenticationResult(u.getId());
+                System.out.println("Made it to onsuccess before launch new intent!");
                 MainActivity.this.startActivity(new Intent(MainActivity.this, MainMenu.class));
                 MainActivity.this.finish();
             }
 
         });
 	}
-	   public void submitFacebook(View view){
-	        // The FB SDK has a bit of a delay in response
-	        final ProgressDialog progressDialog = ProgressDialog.show(
-	                MainActivity.this, "Connecting to Facebook",
-	                "Logging in with Facebook - just a moment");
-	        System.out.println("We made it inside the submitfacebook function");
-	        Session.openActiveSession(this, true, new Session.StatusCallback() {
-	            @Override
-	            public void call(Session session, SessionState state, Exception exception) {
-	                if (exception == null) {
-	                    if (state.equals(RESULT_CANCELED)) {
-	                        Toast.makeText(MainActivity.this, "FB login cancelled",
-	                               Toast.LENGTH_LONG).show();
-	                     } else if (state.isOpened()) {
-	                        if (progressDialog != null && progressDialog.isShowing()) {
-	                               progressDialog.dismiss();
-	                         }
-	                           Toast.makeText(MainActivity.this, 
-	                                   "Logged in with Facebook.", Toast.LENGTH_LONG).show();
-	                           loginFacebookKinveyUser(progressDialog, 
-	                                   session.getAccessToken());
-	                      }
-	                } else {
-	                     error(progressDialog, exception.getMessage());
-	                   }
-	            }
-
-				private void error(ProgressDialog progressDialog, String message) {
-					// TODO Auto-generated method stub
-					
-				}
-	           });
-	    }
-	    private void loginFacebookKinveyUser(final ProgressDialog progressDialog, 
-	            String accessToken) {
-	        kinveyClient.user().loginFacebook(accessToken, new KinveyUserCallback() {
-	            @Override
-	            public void onFailure(Throwable e) {
-	                error(progressDialog, "Kinvey: " + e.getMessage());
-	                Log.e(TAG, "failed Kinvey facebook login", e);
-	            }
-	            private void error(ProgressDialog progressDialog, String string) {
-					Toast.makeText(getApplicationContext(), "IN KinveyloginFailure", Toast.LENGTH_SHORT).show();
-					
-				}
-				@Override
-	            public void onSuccess(User u) {
-	                Log.d(TAG, "successfully logged in with facebook");
-					Toast.makeText(getApplicationContext(), "IN KinveyloginSuccess", Toast.LENGTH_SHORT).show();
-
-	            }
-	        });
-	    }
-	
+//	   public void submitFacebook(){
+//	        // The FB SDK has a bit of a delay in response
+//	        final ProgressDialog progressDialog = ProgressDialog.show(
+//	                MainActivity.this, "Connecting to Facebook",
+//	                "Logging in with Facebook - just a moment");
+//	        System.out.println("We made it inside the submitfacebook function");
+//	        Session.openActiveSession(this, true, new Session.StatusCallback() {
+//	            @Override
+//	            public void call(Session session, SessionState state, Exception exception) {
+//	                if (exception == null) {
+//	                    if (state.equals(RESULT_CANCELED)) {
+//	                        Toast.makeText(MainActivity.this, "FB login cancelled",
+//	                               Toast.LENGTH_LONG).show();
+//	                     } else if (state.isOpened()) {
+//	                        if (progressDialog != null && progressDialog.isShowing()) {
+//	                               progressDialog.dismiss();
+//	                         }
+//	                           Toast.makeText(MainActivity.this, 
+//	                                   "Logged in with Facebook.", Toast.LENGTH_LONG).show();
+//	                           loginFacebookKinveyUser(progressDialog, 
+//	                                   session.getAccessToken());
+//	                      }
+//	                } else {
+//	                     error(progressDialog, exception.getMessage());
+//	                   }
+//	            }
+//
+//				private void error(ProgressDialog progressDialog, String message) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//	           });
+//	    }
+//	    private void loginFacebookKinveyUser(final ProgressDialog progressDialog, 
+//	            String accessToken) {
+//	        kinveyClient.user().loginFacebook(accessToken, new KinveyUserCallback() {
+//	            @Override
+//	            public void onFailure(Throwable e) {
+//	                error(progressDialog, "Kinvey: " + e.getMessage());
+//	                Log.e(TAG, "failed Kinvey facebook login", e);
+//	            }
+//	            private void error(ProgressDialog progressDialog, String string) {
+//					Toast.makeText(getApplicationContext(), "IN KinveyloginFailure", Toast.LENGTH_SHORT).show();
+//					
+//				}
+//				@Override
+//	            public void onSuccess(User u) {
+//	                Log.d(TAG, "successfully logged in with facebook");
+//					Toast.makeText(getApplicationContext(), "IN KinveyloginSuccess", Toast.LENGTH_SHORT).show();
+//
+//	            }
+//	        });
+//	    }
+//	
 	
 	
 }

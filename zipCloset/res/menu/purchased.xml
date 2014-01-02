@@ -1,4 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+        <item android:id="@+id/gotohome"
+        android:title="Home"
+        android:showAsAction="always"></item>
         
         <item android:id="@+id/gototaghistory"
          android:title="History"
@@ -6,10 +9,6 @@
     
     <item android:id="@+id/gotowishlist"
          android:title="Wish"
-        android:showAsAction="always"></item>
-     
-        <item android:id="@+id/gotopurchased"
-         android:title="Purchased"
         android:showAsAction="always"></item>
         
     
