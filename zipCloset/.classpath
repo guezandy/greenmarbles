@@ -11,5 +11,9 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/actionbarsherlock"/>
 	<classpathentry kind="lib" path="C:/Users/Owner/Downloads/json-simple-1.1.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ListSamples"/>
+	<classpathentry kind="lib" path="/ListSamples/bin/dexedLibs/android-support-v4-a3e2a63e507a3c8b0925db144cf75d97.jar"/>
+	<classpathentry kind="lib" path="/ListSamples/bin/dexedLibs/library-e6a76a73975b252d3bdc0557e634c941.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/library"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
