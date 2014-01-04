@@ -1,11 +1,10 @@
 package com.zipper.zipcloset;
 
-import com.kinvey.android.Client;
-import android.content.Intent;
-import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+
+import com.kinvey.android.Client;
 
 public class GoToClosetActivity extends KinveyActivity {
 	private static final String KINVEY_KEY = "kid_PVAtuuzi2f";

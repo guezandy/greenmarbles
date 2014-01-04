@@ -1,24 +1,20 @@
 package com.zipper.zipcloset;
 
-import android.os.Build;
-import android.os.Bundle;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.kinvey.android.Client;
-import com.zipper.zipcloset.KinveyActivity;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import com.actionbarsherlock.view.Menu;
+import com.kinvey.android.Client;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class MainMenu extends BaseSherlockeFragmentActivity {

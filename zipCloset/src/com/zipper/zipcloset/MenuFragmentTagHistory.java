@@ -1,13 +1,7 @@
 package com.zipper.zipcloset;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import com.kinvey.android.AsyncAppData;
-import com.kinvey.android.Client;
-import com.kinvey.android.callback.KinveyListCallback;
-import com.kinvey.java.Query;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
@@ -21,11 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.zipper.zipcloset.KinveyActivity;
+
+import com.kinvey.android.AsyncAppData;
+import com.kinvey.android.Client;
+import com.kinvey.android.callback.KinveyListCallback;
+import com.kinvey.java.Query;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class MenuFragmentTagHistory extends Fragment { 

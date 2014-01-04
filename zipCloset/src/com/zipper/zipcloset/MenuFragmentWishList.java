@@ -3,27 +3,23 @@ package com.zipper.zipcloset;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.actionbarsherlock.view.Menu;
-import com.kinvey.android.AsyncAppData;
-import com.kinvey.android.Client;
-import com.kinvey.android.callback.KinveyListCallback;
-import com.kinvey.java.Query;
-
 import android.annotation.TargetApi;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.kinvey.android.AsyncAppData;
+import com.kinvey.android.Client;
+import com.kinvey.android.callback.KinveyListCallback;
+import com.kinvey.java.Query;
 
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)

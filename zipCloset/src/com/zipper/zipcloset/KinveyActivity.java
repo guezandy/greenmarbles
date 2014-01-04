@@ -1,15 +1,9 @@
 package com.zipper.zipcloset;
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;

@@ -11,8 +11,6 @@ package com.zipper.zipcloset;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kinvey.android.Client;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -30,6 +28,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.kinvey.android.Client;
 
 @SuppressLint("ShowToast")
 @TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)

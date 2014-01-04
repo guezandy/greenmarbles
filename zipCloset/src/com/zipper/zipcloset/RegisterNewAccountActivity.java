@@ -14,21 +14,19 @@ package com.zipper.zipcloset;
  */
 
 
-import java.io.IOException;
-
-import com.kinvey.android.Client;
-import com.kinvey.android.callback.KinveyUserCallback;
-import com.kinvey.android.callback.KinveyUserManagementCallback;
-import com.kinvey.java.User;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.kinvey.android.Client;
+import com.kinvey.android.callback.KinveyUserCallback;
+import com.kinvey.android.callback.KinveyUserManagementCallback;
+import com.kinvey.java.User;
 //import com.stripe.android.*;
 /**
  * Activity for registering new accounts.  This prompts a user for a user name (email address),

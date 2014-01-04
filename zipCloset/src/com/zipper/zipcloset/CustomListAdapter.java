@@ -1,6 +1,7 @@
 package com.zipper.zipcloset;
 
 import java.util.ArrayList;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+ 
 
 public class CustomListAdapter extends BaseAdapter {
 
@@ -51,7 +52,6 @@ public class CustomListAdapter extends BaseAdapter {
 		}
 
 		Entity closetItem = (Entity) listData.get(position);
-		//this is printing twice idk why!
 		System.out.println("Entity brand: "+closetItem.get("Brand"));
 		System.out.println("Entity price: "+closetItem.get("Price"));
 		holder.brandView.setText("Brand: " +closetItem.get("Brand"));

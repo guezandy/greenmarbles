@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="C:/Users/Owner/Desktop/API,SDK,JDK&apos;s/facebook-android-sdk-3.0.1/facebook/bin/facebooksdk.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Owner/Documents/Program Files/Android/adt-bundle-windows-x86/sdk/add-ons/addon-google_apis-google-17/libs/effects.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Owner/Documents/Program Files/Android/adt-bundle-windows-x86/sdk/add-ons/addon-google_apis-google-17/libs/usb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Owner/Documents/Program Files/Android/adt-bundle-windows-x86/sdk/add-ons/addon-google_apis-google-17/libs/maps.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/actionbarsherlock"/>
-	<classpathentry kind="lib" path="C:/Users/Owner/Downloads/json-simple-1.1.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ListSamples"/>
-	<classpathentry kind="lib" path="/ListSamples/bin/dexedLibs/android-support-v4-a3e2a63e507a3c8b0925db144cf75d97.jar"/>
-	<classpathentry kind="lib" path="/ListSamples/bin/dexedLibs/library-e6a76a73975b252d3bdc0557e634c941.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/library"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

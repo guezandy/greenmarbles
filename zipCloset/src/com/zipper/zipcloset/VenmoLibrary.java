@@ -1,14 +1,14 @@
 package com.zipper.zipcloset;
 
-import java.io.*;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 
 import android.content.Intent;
 import android.net.Uri;
