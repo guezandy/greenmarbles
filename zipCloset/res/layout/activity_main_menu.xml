@@ -10,15 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainMenu" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <ExpandableListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
+        android:layout_height="wrap_content" >
+    </ExpandableListView>
+    
+        <Button
         android:id="@+id/zipButtonAct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,4 +36,4 @@
         android:orientation="horizontal" >
     </LinearLayout>
 
-</LinearLayout>
+</LinearLayout> 

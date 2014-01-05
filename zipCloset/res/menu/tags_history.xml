@@ -6,7 +6,7 @@
         android:showAsAction="always"></item>
     
     <item android:id="@+id/gotowishlist"
-         android:title="WishList"
+         android:title="Basket"
         android:showAsAction="always"></item>
         
         <item android:id="@+id/gotopurchased"
