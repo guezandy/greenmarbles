@@ -13,8 +13,10 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -36,7 +38,8 @@ import com.kinvey.android.Client;
 public class ZipActivity extends KinveyActivity {
 	private static final String KINVEY_KEY = "kid_PVAtuuzi2f";
 	private static final String KINVEY_SECRET_KEY = "2cab4a07424945e981478fcfc02341af";
-	
+	public static final String ENTITY_DELIM = "|";
+	public static final String DETAIL_DELIM = "~";
 	
 	private NfcAdapter mNfcAdapter;
 	private Button mEnableWriteButton;
@@ -44,11 +47,13 @@ public class ZipActivity extends KinveyActivity {
 	private ProgressBar mProgressBar;
 	public Button backB;
 
+	@SuppressLint("CutPasteId")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zip);
-		
+		SharedPreferences prefs = this.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+		InternalData.addItem(prefs, CURRENT_SNAG, "");
 		backB = (Button) findViewById(R.id.zipBack);
 		backB.setOnClickListener(new OnClickListener() {
 			@Override
@@ -83,7 +88,13 @@ public class ZipActivity extends KinveyActivity {
 			}
 		});
 		
-		
+		Button favbutton = (Button) findViewById(R.id.purchaseButton);
+		favbutton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addEntity(v);
+			}
+		});
 		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 		if (mNfcAdapter == null) {
 			Toast.makeText(this, "Sorry, NFC is not available on this device", Toast.LENGTH_SHORT).show();
@@ -152,8 +163,8 @@ public class ZipActivity extends KinveyActivity {
 		} else if(bundle.getString("nfcId")!=null) {
 			Client kinveyClient = new Client.Builder(KINVEY_KEY, KINVEY_SECRET_KEY, this).build();
 			getEntity(bundle.getString("nfcId"), KINVEY_ENTITY_COLLECTION_KEY, KINVEY_UPDATE_ZIP_ACTIVITY_CASE,kinveyClient);
-			//mTextField.setVisibility(View.GONE);
-			//mEnableWriteButton.setVisibility(View.GONE);
+			mTextField.setVisibility(View.GONE);
+			mEnableWriteButton.setVisibility(View.GONE);
 		}
 	}
 
@@ -207,6 +218,17 @@ public class ZipActivity extends KinveyActivity {
 			Client kinveyClient = new Client.Builder(KINVEY_KEY, KINVEY_SECRET_KEY, this).build();
 			getEntity(content, KINVEY_ENTITY_COLLECTION_KEY, KINVEY_UPDATE_ZIP_ACTIVITY_CASE,kinveyClient);
 		}
+	}
+		public void addEntity(View v){
+			SharedPreferences prefs = this.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+			String report = prefs.getString(CURRENT_SNAG, "");
+	        //InternalData.addItem(prefs, CART_KEY, "Lacoste~$89.5~http://slimages.macys.com/is/image/MCY/products/8/optimized/1242258_fpx.tif|");
+
+			if( !report.isEmpty()){
+				InternalData.addItem(prefs, InternalData.CART_KEY, report);
+				System.out.println("Just added to internal data");
+			}
+		
 	}
 	
 	

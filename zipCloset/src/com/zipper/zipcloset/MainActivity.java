@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class MainActivity extends BaseSherlockeFragmentActivity  {
 		super.onCreate(savedInstanceState);
 		kinveyClient = new Client.Builder(appKey, appSecret
 			    , this.getApplicationContext()).build();
-		
+		 requestWindowFeature(Window.FEATURE_NO_TITLE);
 		mAccountManager = AccountManager.get(this);
 		final Intent intent = getIntent();
 		mUserEmail = intent.getStringExtra(PARAM_USERNAME);
@@ -259,7 +260,7 @@ public class MainActivity extends BaseSherlockeFragmentActivity  {
             }
 
             public void onSuccess(User u) {
-                CharSequence text = "Welcome "+ u.get("firstname");
+                CharSequence text = "Welcome "+ u.get("username");
                 Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
                 //onAuthenticationResult(u.getId());
                 System.out.println("Made it to onsuccess before launch new intent!");

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -30,12 +31,13 @@ public class KinveyActivity extends FragmentActivity {
 	public static final int KINVEY_LISTVIEW_CASE = 0;
 	public static final int KINVEY_UPDATE_ZIP_ACTIVITY_CASE = 1;
 	public static final int KINVEY_TAGS_HISTORY_CASE = 2;
+	public final static String PACKAGE_NAME = "com.zipper.zipcloset";
 	
 	
 	public static final String KINVEY_ENTITY_COLLECTION_KEY ="EntityCollection";
 	public static final String KINVEY_FAVORITES_KEY = "Favorites";
 	public static final String KINVEY_TAGS_KEY = "Tags";
-	
+	public static final String CURRENT_SNAG = "current";
 	
 	
 
@@ -69,7 +71,7 @@ public class KinveyActivity extends FragmentActivity {
     	final String TAG = "Query Entities";
     	final Context context = this.getApplicationContext();
         Query myQuery = kinveyClient.query();
-        myQuery.equals(key,id);
+        myQuery.equals(key,id); //what does this do?
         kinveyClient.appData(collection, Entity.class).get(myQuery, new KinveyListCallback<Entity>() {
             @Override
             public void onSuccess(Entity[] result) {
@@ -204,7 +206,9 @@ public class KinveyActivity extends FragmentActivity {
 		System.out.println("Inside if statement" +entity.getId());  
 		idText.setText("Clothing Type: " + entity.get("Type"));
 		price.setText("Price: "+entity.get("Price"));
-		brand.setText("Brand: "+entity.get("Brand"));
+		brand.setText("Brand: "+entity.get("Store"));
+		SharedPreferences prefs = this.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+		InternalData.addItem(prefs, CURRENT_SNAG, entity.toString());
 //		mPurchaseButton.setOnClickListener(new OnClickListener() {
 //				
 //			@Override

@@ -54,9 +54,9 @@
     <string name="id">NFC_Tag_Id</string>
     <string name="brand">Brand</string>
     <string name="price">Price</string>
-    <string name="purchase">Purchase Item</string>
+    <string name="purchase">Purchase</string>
     <string name="favorite">Favorite</string>
-    <string name="favoriteButton">Add to WishList</string>
+    <string name="favoriteButton">Add to Basket</string>
     <string name="welcome">"Welcome to ZipCloset the first ever NFC enabled application designed to facilitate shopping and closet organization "</string>
     <string name="mainMenu">Main Menu</string>
     <string name="closetInfoText">Click Go to Closet to see a full Inventory of all the items in your closet.</string>

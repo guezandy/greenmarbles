@@ -3,7 +3,7 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mainback"
+    android:background="@drawable/imagemain"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -23,29 +23,32 @@
 
     <Button
         android:id="@+id/skipButton"
-        android:layout_width="120dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="34dp"
-        android:text="@string/skip" />
+        android:text="@string/skip"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/skipButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="46dp"
-        android:text="@string/ziplogin" />
+        android:text="@string/ziplogin"
+                android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/skipButton"
         android:layout_centerHorizontal="true"
-        android:text="@string/reg" />
+        android:text="@string/reg" 
+                android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/passwordd"
@@ -55,7 +58,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:ems="10"
-        android:hint="@string/passworddd" >
+        android:inputType="textPassword"
+        android:hint="@string/passworddd"
+                android:textColor="#ffffff" >
 
         <requestFocus />
     </EditText>
@@ -68,6 +73,7 @@
         android:layout_alignLeft="@+id/passwordd"
         android:layout_alignRight="@+id/passwordd"
         android:ems="10"
-        android:hint="@string/unEmail" />
+        android:hint="@string/unEmail" 
+                android:textColor="#ffffff"/>
 
 </RelativeLayout>
